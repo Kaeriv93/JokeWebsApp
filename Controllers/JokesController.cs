@@ -80,6 +80,7 @@ namespace JokeApp.Controllers
             return View(joke);
         }
 
+      
         // GET: Jokes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -99,6 +100,7 @@ namespace JokeApp.Controllers
         // POST: Jokes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,JokeQuestion,JokeAnswer")] Joke joke)
@@ -130,7 +132,7 @@ namespace JokeApp.Controllers
             }
             return View(joke);
         }
-
+     
         // GET: Jokes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -148,8 +150,8 @@ namespace JokeApp.Controllers
 
             return View(joke);
         }
-
         // POST: Jokes/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
